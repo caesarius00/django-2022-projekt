@@ -1,0 +1,36 @@
+{% load static %}
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Cezary Kwella" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div id="menu">
+        <ol>
+            <li><a href="/index"><i class="fa fa-database" href="/index"></i> Strona główna</a></li>
+            <li><a href="/adres">Adres</a></li>
+            <li><a href="/klient">Klient</a></li>
+            <li><a href="/krawiec">Krawiec</a></li>
+            <li><a href="/opinia">Opinia</a></li>
+            <li><a href="/personalizowany_towar">Personalizowany towar</a></li>
+            <li><a href="/towar">Towar</a></li>
+            <li><a href="/zamowienie">Zamówienie</a></li>
+            <li><a href="/zwrot">Zwrot</a></li>
+        </ol>
+    </div>
+    <header>
+        <h1>
+            Edytuj rekord
+        </h1>
+    </header> 
+    <div id="content">
+            <form method="post">
+                {{form}}
+                <button type="submit">Zmień</button>
+            </form>
+    </div>
+</body>
+</html>

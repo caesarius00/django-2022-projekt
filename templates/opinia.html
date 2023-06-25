@@ -1,0 +1,86 @@
+{% load static %}
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Cezary Kwella" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div id="menu">
+        <ol>
+            <li><a href="/index"><i class="fa fa-database" href="/index"></i> Strona główna</a></li>
+            <li><a href="/adres">Adres</a></li>
+            <li><a href="/klient">Klient</a></li>
+            <li><a href="/krawiec">Krawiec</a></li>
+            <li><a id="opened">Opinia</a></li>
+            <li><a href="/personalizowany_towar">Personalizowany towar</a></li>
+            <li><a href="/towar">Towar</a></li>
+            <li><a href="/zamowienie">Zamówienie</a></li>
+            <li><a href="/zwrot">Zwrot</a></li>
+        </ol>
+    </div>
+    <header>
+        <h1>
+            Opinie
+        </h1>
+    </header> 
+    <div id="content">
+        <table>
+            <tr>
+                <th></th>
+                <th>id</th>
+                <th>Nick</th>
+                <th>Towar</th>
+                <th>Ocena</th>
+                <th>Komentarz</th>
+                <th></th>
+            </tr>
+        {% for item in baza%}
+            <tr>
+                <td>
+                    <a href="/edit/opinia/{{item.idOpinia}}">
+                        <img class="button" src="{% static 'graphics/edit.png' %}"/>
+                    </a>
+                </td>
+              <td>{{item.idOpinia}}</td>
+              <td>{{item.Nick.Nick}}</td>
+              <td>{{item.idTowar}}</td>
+              <td>
+                {% if item.Gwiazdki == 5 %}
+                    <img class="stars" src="{% static 'graphics/5.png' %}"/>
+                {% elif item.Gwiazdki == 4 %}
+                    <img class="stars" src="{% static 'graphics/4.png' %}"/>
+                {% elif item.Gwiazdki == 3 %}
+                    <img class="stars" src="{% static 'graphics/3.png' %}"/>
+                {% elif item.Gwiazdki == 2 %}
+                    <img class="stars" src="{% static 'graphics/2.png' %}"/>
+                {% elif item.Gwiazdki == 1 %}
+                    <img class="stars" src="{% static 'graphics/1.png' %}"/>
+                {% endif %}
+
+              </td>
+              <td>{{item.Komentarz}}</td>
+              <td>
+                  <a href="/delete/opinia/{{item.idOpinia}}">
+                      <img class="button" src="{% static 'graphics/delete.png' %}"/>
+                  </a>
+              </td>
+            </tr>
+        {% endfor %}
+        </table>
+    </br> <p>Wszystkich wartości: {{ilosc}}</p>
+    <div id="bottom">
+    <img id="folderPhoto" src="{% static 'graphics/add.png' %}"/>
+        <div>
+            <h3>Dodaj nowy rekord:</h3>
+            <form method="post" title="test">
+                {{form}}
+                <button type="submit">Dodaj</button>
+            </form>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

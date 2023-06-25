@@ -1,0 +1,81 @@
+{% load static %}
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Cezary Kwella" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div id="menu">
+        <ol>
+            <li><a href="/index"><i class="fa fa-database" href="/index"></i> Strona główna</a></li>
+            <li><a href="/adres">Adres</a></li>
+            <li><a href="/klient">Klient</a></li>
+            <li><a href="/krawiec">Krawiec</a></li>
+            <li><a href="/opinia">Opinia</a></li>
+            <li><a id="opened">Personalizowany towar</a></li>
+            <li><a href="/towar">Towar</a></li>
+            <li><a href="/zamowienie">Zamówienie</a></li>
+            <li><a href="/zwrot">Zwrot</a></li>
+        </ol>
+    </div>
+    <header>
+        <h1>
+            Personalizowane towary
+        </h1>
+    </header> 
+    <div id="content">
+        <table>
+            <tr>
+                <th></th>
+                <th>id</th>
+                <th>Towar</th>
+                <th>Zamówienie</th>
+                <th>Rozmiar</th>
+                <th>Kolor</th>
+                <th>Czy wyprodukowano</th>
+                <th></th>
+            </tr>
+        {% for item in baza%}
+            <tr>
+                <td>
+                    <a href="/edit/personalizowany_towar/{{item.idPersonalizowany}}">
+                        <img class="button" src="{% static 'graphics/edit.png' %}"/>
+                    </a>
+                </td>
+              <td>{{item.idPersonalizowany}}</td>
+              <td>{{item.idTowar}}</td>
+              <td>{{item.idZamowienie}}</td>
+              <td>{{item.Rozmiar}}</td>
+              <td>{{item.Kolor}}</td>
+              <td>
+                {% if item.czyWyprodukowano %}
+                    tak
+                {% else %}
+                    <span class="not">nie</span>
+                {% endif %}
+              </td>
+              <td>
+                  <a href="/delete/personalizowany_towar/{{item.idPersonalizowany}}">
+                      <img class="button" src="{% static 'graphics/delete.png' %}"/>
+                  </a>
+              </td>
+            </tr>
+        {% endfor %}
+        </table>
+    </br> <p>Wszystkich wartości: {{ilosc}}</p>
+    <div id="bottom">
+    <img id="folderPhoto" src="{% static 'graphics/add.png' %}"/>
+        <div>
+            <h3>Dodaj nowy rekord:</h3>
+            <form method="post" title="test">
+                {{form}}
+                <button type="submit">Dodaj</button>
+            </form>
+        </div>
+    </div>
+    </div>
+</body>
+</html>
